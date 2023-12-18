@@ -7,16 +7,35 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//// hashMap approach
+//func detectCycle(head *ListNode) *ListNode {
+//	indexMap := make(map[*ListNode]bool)
+//	left := head
+//	for left != nil && left.Next != nil {
+//		if _, ok := indexMap[left]; !ok {
+//			indexMap[left] = true
+//		} else {
+//			return left
+//		}
+//		left = left.Next
+//	}
+//	return nil
+//}
+
+// hare & tortoise
 func detectCycle(head *ListNode) *ListNode {
-	indexMap := make(map[*ListNode]bool)
-	left := head
-	for left != nil && left.Next != nil {
-		if _, ok := indexMap[left]; !ok {
-			indexMap[left] = true
-		} else {
+	left, right := head, head
+	for right != nil && right.Next != nil {
+		left = left.Next
+		right = right.Next.Next
+		if left == right {
+			right = head
+			for left != right {
+				left = left.Next
+				right = right.Next
+			}
 			return left
 		}
-		left = left.Next
 	}
 	return nil
 }
