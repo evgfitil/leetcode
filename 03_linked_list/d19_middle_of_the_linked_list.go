@@ -37,12 +37,3 @@ func main() {
 	node1 := &ListNode{1, node2}
 	fmt.Println(middleNode(node1))
 }
-
-// 1 2 3 4 5 6
-//   l     r
-//     l r
-// l = 2, r = 3; 2 + 3 = 5; 6 - 5 = 1
-
-// 1 2 3 4 5
-//   l   r
-//     l == r
